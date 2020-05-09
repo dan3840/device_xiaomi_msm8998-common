@@ -16,7 +16,7 @@
 
 # Camera
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
-    vendor.camera.aux.packagelist=com.android.camera,org.codeaurora.snapcam
+    vendor.camera.aux.packagelist=com.android.camera,org.lineageos.snap
 
 # ParanoidDoze
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
