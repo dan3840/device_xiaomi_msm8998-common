@@ -14,6 +14,9 @@ ubwc.no.compression                                           u:object_r:camera_
 vidc.enc.dcvs.extra-buff-count                                u:object_r:camera_prop:s0
 video.disable.ubwc                                            u:object_r:camera_prop:s0
 
+# Dolby
+persist.vendor.dolby.loglevel                 u:object_r:vendor_dolby_loglevel_prop:s0
+
 # cnss-daemon
 persist.vendor.wigig.npt.enable                               u:object_r:cnss_prop:s0
 
@@ -28,6 +31,8 @@ persist.vendor.sys.pay.ifaa                                   u:object_r:vendor_
 
 # Radio
 ro.build.software.version                                     u:object_r:qcom_ims_prop:s0
+ril.fake_bs_flag0                                             u:object_r:vendor_radio_prop:s0
+ril.fake_bs_flag1                                             u:object_r:vendor_radio_prop:s0
 
 # Recovery
 ro.build.expect.firmware                                      u:object_r:exported_default_prop:s0

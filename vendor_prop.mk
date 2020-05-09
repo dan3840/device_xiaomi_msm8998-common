@@ -14,6 +14,14 @@
 # limitations under the License.
 #
 
+# ART
+PRODUCT_PROPERTY_OVERRIDES += \
+    dalvik.vm.dex2oat-filter=speed \
+    dalvik.vm.image-dex2oat-filter=speed \
+    ro.sys.fw.dex2oat_thread_count=8 \
+    dalvik.vm.boot-dex2oat-threads=8 \
+    dalvik.vm.dex2oat-threads=8
+	
 # Audio
 PRODUCT_PROPERTY_OVERRIDES += \
     aaudio.hw_burst_min_usec=2000 \
@@ -101,12 +109,24 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # Camera
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.camera.stats.test=5 \
+    persist.camera.eis.enable=1 \
     persist.camera.xm.green.b=0.96 \
     persist.camera.xm.green.r=0.97 \
+    persist.ts.rtmakeup=false \
     persist.vendor.camera.HAL3.enabled=1 \
     persist.vendor.camera.set.afd=4 \
     persist.vendor.dualcam.lpm.enable=1 \
+    vendor.camera.aux.packagelist=com.google.android.GoogleCamera,com.google.android.GoogleCameraTele,com.android.camera \
+    camera.hal1.packagelist=com.whatsapp \
     vidc.enc.dcvs.extra-buff-count=2
+
+# Youtube 4k
+PRODUCT_PROPERTY_OVERRIDES += \
+   sys.display-size=3840x2160
+
+#Set cutoff voltage to 3200mV
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.cutoff_voltage_mv=3400	
 
 # CNE
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -114,17 +134,39 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Display
 PRODUCT_PROPERTY_OVERRIDES += \
+    debug.hwui.renderer=skiavk \
     debug.sf.enable_gl_backpressure=1 \
     debug.sf.enable_hwc_vds=1 \
     debug.sf.hw=1 \
-    debug.sf.latch_unsignaled=1 \
-    ro.opengles.version=196610 \
     vendor.display.disable_partial_split=1 \
     vendor.display.disable_rotator_downscale=1 \
     vendor.display.disable_skip_validate=1 \
     vendor.display.enable_default_color_mode=1 \
     vendor.display.perf_hint_window=50 \
-    vendor.gralloc.enable_fb_ubwc=1
+	debug.egl.hw=1 \
+    debug.sf.disable_backpressure=1 \
+    debug.sf.early_app_phase_offset_ns=1500000 \
+    debug.sf.early_gl_app_phase_offset_ns=15000000 \
+    debug.sf.early_gl_phase_offset_ns=3000000 \
+    debug.sf.early_phase_offset_ns=1500000 \
+    debug.sf.enable_gl_backpressure=1 \
+    debug.sf.enable_hwc_vds=1 \
+    debug.sf.latch_unsignaled=1 \
+    persist.demo.hdmirotationlock=false \
+    persist.sys.sf.native_mode=0 \
+    ro.surface_flinger.force_hwc_copy_for_virtual_displays=true \
+    ro.surface_flinger.max_frame_buffer_acquired_buffers=2 \
+    ro.surface_flinger.max_virtual_display_dimension=4096 \
+    ro.surface_flinger.protected_contents=true \
+    ro.surface_flinger.vsync_event_phase_offset_ns=2000000 \
+    ro.surface_flinger.vsync_sf_event_phase_offset_ns=6000000 \
+    ro.surface_flinger.use_color_management=true \
+    ro.opengles.version=196610 \
+    sdm.debug.disable_inline_rotator=1 \
+    sdm.debug.disable_inline_rotator_secure=1 \
+    vendor.gralloc.enable_fb_ubwc=1 \
+    persist.hwc.enable_vds=1 \
+    debug.sdm.support_writeback=0
 
 # DPM
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -135,12 +177,35 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.frp.pst=/dev/block/platform/soc/1da4000.ufshc/by-name/frp
 
+# HWUI
+    ro.hwui.drop_shadow_cache_size=6 \
+    ro.hwui.gradient_cache_size=1\ 
+    ro.hwui.layer_cache_size=48 \
+    ro.hwui.path_cache_size=32 \
+    ro.hwui.r_buffer_cache_size=8 \
+    ro.hwui.text_large_cache_height=4096 \
+    ro.hwui.text_large_cache_width=2048 \
+    ro.hwui.text_small_cache_height=1024 \
+    ro.hwui.text_small_cache_width=1024 \
+    ro.hwui.texture_cache_flushrate=0.4 \
+    ro.hwui.texture_cache_size=72
+	
 # IMS
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.dbg.volte_avail_ovr=1 \
     persist.dbg.vt_avail_ovr=1 \
     persist.vendor.qti.telephony.vt_cam_interface=1
 
+# Memory
+PRODUCT_PROPERTY_OVERRIDES += \
+    dalvik.vm.heapgrowthlimit=256m \
+    dalvik.vm.heapmaxfree=8m \
+    dalvik.vm.heapminfree=512k \
+    dalvik.vm.heapsize=512m \
+    dalvik.vm.heapstartsize=16m \
+    dalvik.vm.heaptargetutilization=0.75 \
+	ro.vendor.qti.sys.fw.bservice_enable=true
+	
 # Media
 PRODUCT_PROPERTY_OVERRIDES += \
     debug.stagefright.omx_default_rank.sw-audio=1 \
@@ -187,20 +252,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.vendor.sensors.spg=false \
     ro.vendor.sensors.sta_detect=true \
     ro.vendor.sensors.taptap_gesture=true
-
-# SurfaceFlinger
-PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
-    ro.surface_flinger.force_hwc_copy_for_virtual_displays=true \
-    ro.surface_flinger.max_virtual_display_dimension=4096 \
-    ro.surface_flinger.protected_contents=true \
-    ro.surface_flinger.vsync_event_phase_offset_ns=2000000 \
-    ro.surface_flinger.vsync_sf_event_phase_offset_ns=6000000
-
-PRODUCT_PROPERTY_OVERRIDES += \
-    debug.sf.early_phase_offset_ns=1500000 \
-    debug.sf.early_app_phase_offset_ns=1500000 \
-    debug.sf.early_gl_phase_offset_ns=3000000 \
-    debug.sf.early_gl_app_phase_offset_ns=15000000
 
 # Time services
 PRODUCT_PROPERTY_OVERRIDES += \
