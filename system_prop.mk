@@ -17,8 +17,3 @@
 # Camera
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     vendor.camera.aux.packagelist=com.android.camera,org.lineageos.snap
-
-# ParanoidDoze
-PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
-    ro.sensor.proximity=true \
-    ro.sensor.pickup=android.sensor.tilt_detector
